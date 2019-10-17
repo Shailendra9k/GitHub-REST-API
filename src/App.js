@@ -40,12 +40,12 @@ class FetchGitHub extends React.Component {
       },
       {
         Header: "Owner", //Header of the column
-        accessor: "Owner.login" // Value accessor
+        accessor: "owner.login" // Value accessor
       }
     ];
     return (
       <div className="App">
-        <h1>Repositories</h1>
+        <h1>Search Repositories</h1>
         <input type="text" onChange={this.handleChange} />
         <button onClick={this.fetchData} value={this.state.keyword}>
           Fetch
