@@ -1,5 +1,7 @@
 import React from "react";
 import "./App.css";
+import ReactTable from "react-table";
+import "react-table/react-table.css";
 
 class FetchGitHub extends React.Component {
   constructor(props) {
@@ -27,14 +29,20 @@ class FetchGitHub extends React.Component {
   };
 
   render() {
-    const itemRows = this.state.data.map((item, index) => (
-      <tr key={index}>
-        <td>{item.full_name}</td>
-        <td>
-          <a href={item.html_url}>{item.html_url}</a>
-        </td>
-      </tr>
-    ));
+    const columns = [
+      {
+        Header: "Name", //Header of the column
+        accessor: "full_name" // Value accessor
+      },
+      {
+        Header: "URL", //Header of the column
+        accessor: "html_url" // Value accessor
+      },
+      {
+        Header: "Owner", //Header of the column
+        accessor: "Owner.login" // Value accessor
+      }
+    ];
     return (
       <div className="App">
         <h1>Repositories</h1>
@@ -42,17 +50,12 @@ class FetchGitHub extends React.Component {
         <button onClick={this.fetchData} value={this.state.keyword}>
           Fetch
         </button>
-        <table>
-          <tbody>
-            <thead>
-              <tr>
-                <th>Name</th>
-                <th>URL</th>
-              </tr>
-            </thead>
-            {itemRows}
-          </tbody>
-        </table>
+        <ReactTable
+          data={this.state.data}
+          columns={columns}
+          filterable={true}
+          defaultPageSize={10}
+        />
       </div>
     );
   }
