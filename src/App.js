@@ -41,6 +41,24 @@ class FetchGitHub extends React.Component {
       {
         Header: "Owner", //Header of the column
         accessor: "owner.login" // Value accessor
+      },
+      // Implementing cell renders
+      {
+        id: "button",
+        sortable: false,
+        filterable: false,
+        width: 100,
+        accessor: "full_name",
+        Cell: ({ value }) => (
+          <button
+            className="btn btn-default btn-link"
+            onClick={() => {
+              this.btnClick(value);
+            }}
+          >
+            Press me
+          </button>
+        )
       }
     ];
     return (
