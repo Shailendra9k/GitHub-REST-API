@@ -63,7 +63,7 @@ class FetchGitHub extends React.Component {
     ];
     return (
       <div className="App">
-        <h1>Search Repositories</h1>
+        <h1>Search Repositorie</h1>
         <input type="text" onChange={this.handleChange} />
         <button onClick={this.fetchData} value={this.state.keyword}>
           Fetch
